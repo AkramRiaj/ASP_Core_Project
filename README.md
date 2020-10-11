@@ -10,4 +10,4 @@
         *  Run project
         *  Registation
         *  Login : UserName = admin@gmail.com
-                   Password = admin
+                   Password = admin 
