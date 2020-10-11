@@ -1,0 +1,15 @@
+﻿@model ViewDropDown
+<br /><br />
+
+<form asp-controller="Account" asp-action="RollMappingToUserList">
+
+    <select name="UserName" style="color:black"
+            asp-items="@(new SelectList(Model.DropDownListValues, "Id", "Name"))">
+    </select>
+
+    <input class="btn btn-primary" type="submit"  />
+
+</form>
+
+
+

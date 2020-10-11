@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ASP_Core_Project.Models.EmploymentHistory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.JobStarttDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Certificate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Institute)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobStarttDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Certificate.CertificateName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Branch_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Institute.InstituteName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

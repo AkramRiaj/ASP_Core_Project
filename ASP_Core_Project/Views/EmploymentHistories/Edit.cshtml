@@ -1,0 +1,59 @@
+﻿@model ASP_Core_Project.Models.EmploymentHistory
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>EmploymentHistory</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="EmployeeID" class="control-label"></label>
+                <select asp-for="EmployeeID" class="form-control" asp-items="ViewBag.EmployeeID"></select>
+                <span asp-validation-for="EmployeeID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CertificateID" class="control-label"></label>
+                <select asp-for="CertificateID" class="form-control" asp-items="ViewBag.CertificateID"></select>
+                <span asp-validation-for="CertificateID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstituteID" class="control-label"></label>
+                <select asp-for="InstituteID" class="form-control" asp-items="ViewBag.InstituteID"></select>
+                <span asp-validation-for="InstituteID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobStarttDate" class="control-label"></label>
+                <input asp-for="JobStarttDate" class="form-control" />
+                <span asp-validation-for="JobStarttDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobEndDate" class="control-label"></label>
+                <input asp-for="JobEndDate" class="form-control" />
+                <span asp-validation-for="JobEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

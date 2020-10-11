@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Employee Management System </title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    <style>
+        body {
+            font-family: Arial;
+            color: #ffffff;
+        }
+
+        .navbar {
+            background-image: url('../images/n.jpg');
+        }
+
+
+
+
+        .dropbtn {
+            font-size: 15px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 10px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #343a40eb;
+            min-width: 10px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: white;
+                padding: 5px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #6ca0cce8;
+                }
+
+        /*.dropdown:hover .dropbtn {
+            background-color: #a4c2d0c2;
+        }*/
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body style="background-color:#000000">
+    <nav class="navbar navbar-inverse bg-primary navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">AR Group </a>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <button class="dropbtn"> Employee </button>
+                            <div class="dropdown-content">
+                                <a asp-area="" asp-controller="Companies" asp-action="Index">Company</a>
+                                <a asp-area="" asp-controller="Departments" asp-action="Index">Departments</a>
+                                <a asp-area="" asp-controller="Jobs" asp-action="Index">Job</a>
+                                <a asp-area="" asp-controller="Certificates" asp-action="Index"> Certificate</a>
+                                <a asp-area="" asp-controller="Institutes" asp-action="Index">Institute</a>
+                                <a asp-area="" asp-controller="Employees" asp-action="Index">Employee</a>
+                                <a asp-area="" asp-controller="EmploymentHistories" asp-action="Index">EmploymentHistorie</a>
+                                <a asp-area="" asp-controller="Notices" asp-action="Index">Notice</a>
+                                <a asp-area="" asp-controller="Details" asp-action="Index">Details</a>
+                            </div>
+                        </li>
+
+                        <li class="dropdown">
+                            <button class="dropbtn">Menu</button>
+                            <div class="dropdown-content">
+                                <a asp-area="" asp-controller="Employees" asp-action="Index"> Employee </a>
+                                <a asp-area="" asp-controller="Institutes" asp-action="DataInsert"> Mullti Insert </a>
+                                <a asp-area="" asp-controller="Details" asp-action="Index"> Details Select </a>
+
+                            </div>
+                        </li>
+
+
+
+
+
+                        <li class="dropdown">
+                            <button class="dropbtn"> Identity </button>
+                            <div class="dropdown-content">
+
+
+                                <a asp-area="" asp-controller="Account" asp-action="Register">Sign Up</a>
+                                <a asp-area="" asp-controller="MenuModelManages" asp-action="RoleAssignWithUser">RoleWithUser</a>
+                                <a asp-area="" asp-controller="Account" asp-action="RollMappingToUserList">RollMappingToUser</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Roll">Roll</a>
+                                <a asp-area="" asp-controller="MenuHelperModels" asp-action="Index">Menu Helper</a>
+                                <a asp-area="" asp-controller="MenuModels" asp-action="Index">Menu Setup</a>
+                                <a asp-area="" asp-controller="MenuModelManages" asp-action="View_RollPermission">Menu Permission</a>
+
+                            </div>
+                        </li>
+
+
+                    }
+
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a asp-area="" asp-controller="Account" asp-action="Logout">
+                                @{
+                                    if (Context.User.Identity.IsAuthenticated)
+                                    {
+                                        @User.Identity.Name
+                                    }
+                                }
+                                <span class="glyphicon">&#xe163;</span> Log Out
+                            </a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Register">Sign Up</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Log in </a></li>
+
+                    }
+
+                </ul>
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>
+                Md. Akram Hossain <br />
+                ID: 1252917
+            </p>
+            <p><a class="btn btn-info" href="http://careerhub.idb-bisew.info/">Learn more &raquo;</a></p>
+
+            <p>&copy; 2020 - AR Company Ltd. </p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
